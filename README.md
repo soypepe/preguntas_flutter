@@ -1,0 +1,1 @@
+App sencilla hecha en flutter usando vectores y fullstate en componentes.
