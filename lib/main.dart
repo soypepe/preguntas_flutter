@@ -30,7 +30,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> puntos = [];
-
+  int puntosCorrectos = 0;
   void revisarRespuesta(bool respuesta) {
     bool correcta = preguntasVector.getRespuesta();
     setState(() {
@@ -38,7 +38,8 @@ class _QuizPageState extends State<QuizPage> {
         Alert(
             context: context,
             title: "Fin del cuestionario",
-            desc: "Ya era hora",
+            desc: "Ya era hora, respuestas correctas: " +
+                puntosCorrectos.toString(),
             buttons: [
               DialogButton(
                 child: Text(
@@ -52,6 +53,7 @@ class _QuizPageState extends State<QuizPage> {
             ]).show();
         preguntasVector.resetNPregunta();
         puntos = [];
+        puntosCorrectos = 0;
         //procedimientos y reset van afuera de el boton apretado
         //si no se salta la primer pregunta
         // Alert(
@@ -64,6 +66,7 @@ class _QuizPageState extends State<QuizPage> {
       } else {
         if (respuesta == correcta) {
           puntos.add(Icon(Icons.check, color: Colors.green));
+          puntosCorrectos++;
         } else {
           puntos.add(Icon(Icons.close, color: Colors.red));
         }
